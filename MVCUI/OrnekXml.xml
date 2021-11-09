@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<transfer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://pts.saglik.gov.tr/pts_xml_schema_v_1_4.xsd">
+  <sourceGLN>8600000010000</sourceGLN>
+  <destinationGLN>8680000000001</destinationGLN>
+  <actionType>S</actionType>
+  <shipTo>8680000000000</shipTo>
+  <documentNumber>IES2021000000001</documentNumber>
+  <documentDate>2021-03-18</documentDate>
+  <note />
+  <vesion>1.4</vesion>
+  <carrier carrierLabel="00123123412340000000" containerType="C">
+    <productList GTIN="08699543234123" lotNumber="20020501" productionDate="2020-09-07" expirationDate="2022-01-31">
+      <serialNumber>91000002969560</serialNumber>
+      <serialNumber>91000002969561</serialNumber>
+      <serialNumber>91000002969562</serialNumber>
+     </productList>
+  </carrier>
+  <carrier carrierLabel="00186808534493123456" containerType="C">
+    <productList GTIN="08699543234124" lotNumber="20020501" productionDate="2020-09-07" expirationDate="2022-01-31">
+      <serialNumber>91000002971891</serialNumber>
+      <serialNumber>91000002971893</serialNumber>
+      <serialNumber>91000002972809</serialNumber>
+     </productList>
+  </carrier>
+ 
+</transfer>

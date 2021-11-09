@@ -1,0 +1,29 @@
+﻿@model Entities.Dtos.UserForLoginDto
+@{
+    ViewData["Title"] = "Login";
+}
+
+<body class="text-center">
+    <main class="form-signin">
+        <div class="col-md-12">
+            <h1 class="h4 mb-3 fw-normal">Please sign in</h1>
+            @using (Html.BeginForm("Login", "Auth", FormMethod.Post))
+            {
+
+        <div class="form-floating">
+            <label for="floatingInput">Email address</label>
+             @Html.TextBoxFor(x=> x.Email, new {@class="form-control",id="email",placeholder="email"})
+        </div>
+                <div class="form-floating mt-2">
+                  
+                    <label for="floatingPassword">Password</label>
+                    @Html.PasswordFor(x=>x.Password, new {@class="form-control",id="password",placeholder="Password"})
+                </div>
+                <br />
+                <button class="w-100 btn btn-dark" type="submit" style="color:#77d0d9" >Sign in</button>
+            }
+        </div>
+    </main>
+
+</body>
+
