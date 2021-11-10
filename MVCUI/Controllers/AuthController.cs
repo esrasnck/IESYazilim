@@ -34,12 +34,13 @@ namespace MVCUI.Controllers
             var userExist = _authService.UserExists(userForRegister.Email);
             if (!userExist.Success)
             {
-                return View();
+                ViewBag.userExist = userExist.Message;
+                return RedirectToAction("Login");
             }
             var registerResult = _authService.Register(userForRegister);
             if (registerResult.Success)
             {
-
+                ViewBag.registerResult = registerResult.Message;
                 return View();
             }
             return View();
@@ -59,6 +60,7 @@ namespace MVCUI.Controllers
             var userToLogin = _authService.Login(userForLogin);
             if (!userToLogin.Success)
             {
+                ViewBag.userToLogin = userToLogin.Message;
                 return View();
             }
             return View();

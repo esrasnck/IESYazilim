@@ -27,7 +27,7 @@ namespace Business.Concrete
             }
             if (!HashingHelper.VerifyPasswordHash(userForLoginDto.Password, IsExist.PasswordHash, IsExist.PasswordSalt))
             {
-                return new ErrorDataResult<User>(IsExist,"Şifre hatalı");
+                return new ErrorDataResult<User>(IsExist,"Şifre veya kullanıcı adı hatalı");
             }
             return new SuccessDataResult<User>(IsExist, "Giriş başarılı");
         }
