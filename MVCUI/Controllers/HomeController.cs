@@ -22,12 +22,7 @@ namespace MVCUI.Controllers
 
         public IActionResult Index()
         {
-            var filePath = @"C:\Users\Esra SANCAK\source\repos\IESYazılım\MVCUI\OrnekXml.xml";
-            string readFile = System.IO.File.ReadAllText(filePath);
-            Transfer xmlToCsharp = readFile.FromXml<Transfer>();
-
-            string csharpToXml = xmlToCsharp.ToXml();
-
+       
             return View();
         }
 

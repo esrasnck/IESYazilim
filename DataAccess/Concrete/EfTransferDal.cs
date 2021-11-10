@@ -7,7 +7,7 @@ using System.Text;
 
 namespace DataAccess.Concrete
 {
-    class EfTransferDal: EfEntityRepositoryBase<Transfer, IESYazilimContext>, ITransferDal
+    public class EfTransferDal: EfEntityRepositoryBase<Transfer, IESYazilimContext>, ITransferDal
     {
     }
 }

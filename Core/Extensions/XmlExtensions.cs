@@ -23,6 +23,8 @@ namespace Core.Extensions
             {
                 XmlSerializer xmlSerializer = new XmlSerializer(value.GetType());
                 XmlSerializerNamespaces ns = new XmlSerializerNamespaces();
+
+                /// ne demek anlamadım
                 ns.Add(string.Empty, string.Empty);
                 xmlSerializer.Serialize(xmlWriter, value, ns);
                 return stringWriter.ToString();

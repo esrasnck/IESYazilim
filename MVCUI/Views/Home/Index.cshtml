@@ -2,7 +2,55 @@
     ViewData["Title"] = "Home Page";
 }
 
+<!--Daha sonra burayı düzenle. aşağıdaki kodun konumunu sevmedim.-->
+<script src="~/lib/jquery/dist/jquery.js"></script>
+
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    @*<p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>*@
 </div>
+
+<div class="col-md-12">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Email</th>
+                <th scope="col">First Name</th>
+                <th scope="col">Last Name</th>
+                <th scope="col">Avatar</th>
+            </tr>
+        </thead>
+        <tbody id="tab1">
+         
+        </tbody>
+    </table>
+    <br />
+    <br />
+    <div class="col-md-12">
+        <button class="w-100 btn btn-md btn btn-dark"> @Html.ActionLink("Kullanıcı girişine git", "Register", "Auth") </button>
+    </div>
+</div>
+
+<script>
+
+    $(document).ready(function () {
+        console.log("esra")
+        $.ajax({
+            url: "https://reqres.in/api/users?page=2",
+            type: "Get",
+            success: function (response) {
+                console.log(response.data)
+                var trHtml = ''
+                $.each(response.data, function (i, item)
+                {
+                    trHtml += '<tr><td>' + item.id + '</th><td>' + item.email + '</td><td>' + item.first_name + '</td ><td>' + item.last_name + '</td><td> <img src="' + item.avatar + '"></td></tr>';
+
+                });
+        $('#tab1').append(trHtml);
+            }
+
+        });
+    })
+
+</script>
