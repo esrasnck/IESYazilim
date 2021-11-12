@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace MVCUI.Controllers
@@ -27,15 +28,16 @@ namespace MVCUI.Controllers
         [HttpPost]
         public IActionResult Register(UserForRegisterDto userForRegister)
         {
-            if (!ModelState.IsValid)
-            {
-                return View();
-            }
+            //if (!ModelState.IsValid)
+            //{
+            //    return View();
+            //}
             var userExist = _authService.UserExists(userForRegister.Email);
             if (!userExist.Success)
             {
                 ViewBag.userExist = userExist.Message;
-                return RedirectToAction("Login");
+            
+                return View();
             }
             var registerResult = _authService.Register(userForRegister);
             if (registerResult.Success)
@@ -43,6 +45,7 @@ namespace MVCUI.Controllers
                 ViewBag.registerResult = registerResult.Message;
                 return View();
             }
+
             return View();
             
         }
@@ -63,6 +66,7 @@ namespace MVCUI.Controllers
                 ViewBag.userToLogin = userToLogin.Message;
                 return View();
             }
+            ViewBag.userToLogin = userToLogin.Message;
             return View();
         }
 

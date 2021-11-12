@@ -1,0 +1,42 @@
+Beklenen:
+KOŞULLAR (WHERE)
+• 4. 5. Ve 6. Aylardaki faturaların
+• Iptal edilmemiş onlaların
+• Sadece Toptan Satış faturalarının
+• 4,5ve 6 . ay toplam tutarı 300.000 üzerinde olanlarının
+
+TALEPLER (SELECT)
+• Cari Kartların özel koduna göre gruplanmış
+• Sıra numarası ile numaralanmış
+• M4 kolonuna sadece 4. Ay toplam fatura net tutarı
+• M5 kolonuna sadece 5. Ay toplam fatura net tutarı
+• M6 kolonuna sadece 6. Ay toplam fatura net tutarı
+• Q2 kolonuna 4,5 ve 6. Ay toplam fatura net tutarı
+• AVARAGE_PER_INVOICE kolonuna ise bu 3 aydaki faturaların , fatura başına ortalama kaç TL ‘lik tutar yansıdığının bilgisi
+• Q2_SUM da ise Q2 kolonundaki fatura net tutar bilgilerinin her satırda toplana toplana kümüle (cumulate invoice q2 net amount) tutarının örnekteki gibi bulunması
+
+
+Query: 
+
+;WITH CTE AS (
+	SELECT
+		ROW_NUMBER() OVER(ORDER BY (SELECT NULL)) AS Row_,
+		CLCARD.SPECODE AS Group_,
+		SUM(CASE WHEN MONTH(INVOICE.DATE_) = 4 THEN INVOICE.NETTOTAL ELSE 0 END) AS M4,
+		SUM(CASE WHEN MONTH(INVOICE.DATE_) = 5 THEN INVOICE.NETTOTAL ELSE 0 END) AS M5,
+		SUM(CASE WHEN MONTH(INVOICE.DATE_) = 6 THEN INVOICE.NETTOTAL ELSE 0 END) AS M6,
+		SUM(INVOICE.NETTOTAL) AS Q2,
+		AVG(INVOICE.NETTOTAL) AS AVARAGE_PER_INVOICE
+	FROM LG_115_01_INVOICE INVOICE
+		INNER JOIN LG_115_01_STLINE LINE ON INVOICE.LOGICALREF = LINE.INVOICEREF
+		INNER JOIN LG_115_CLCARD CLCARD ON INVOICE.CLIENTREF = CLCARD.LOGICALREF
+	WHERE MONTH(INVOICE.DATE_) IN (4, 5, 6)
+		AND INVOICE.CANCELLED = 0
+		AND INVOICE.TRCODE = 8
+	GROUP BY CLCARD.SPECODE
+	HAVING SUM(INVOICE.NETTOTAL) > 300000
+)
+SELECT *,
+	SUM(Q2) OVER(ORDER BY Row_ ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW) AS Q2_SUM
+FROM CTE
+ORDER BY Group_

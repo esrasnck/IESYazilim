@@ -13,8 +13,8 @@ namespace Entities.Concrete
         public long carrierid { get; set; }
         public string GTIN { get; set; }
         public string lotNumber { get; set; }
-        public DateTime productionDate { get; set; }
-        public DateTime expirationDate { get; set; }
+        public DateTime? productionDate { get; set; }
+        public DateTime? expirationDate { get; set; }
         public string PONumber { get; set; }
 
     }

@@ -13,7 +13,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Business", "Business\Busine
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MVCUI", "MVCUI\MVCUI.csproj", "{4F110820-1CCD-4ACE-B4FF-124B0F71117D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RandomImageWebAPI", "RandomImageWebAPI\RandomImageWebAPI.csproj", "{AF0FBA1A-4174-4D86-8F03-AC4BCF870581}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RandomImageWebAPI", "RandomImageWebAPI\RandomImageWebAPI.csproj", "{AF0FBA1A-4174-4D86-8F03-AC4BCF870581}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E7441307-63B8-4543-AD00-C842E6B2ABD7}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\Desktop\QuerySonucu.png = ..\..\..\Desktop\QuerySonucu.png
+		SqlQuery.txt = SqlQuery.txt
+		..\..\..\Desktop\SQLQuery9.sql = ..\..\..\Desktop\SQLQuery9.sql
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

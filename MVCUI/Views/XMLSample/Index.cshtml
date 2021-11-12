@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+@using (Html.BeginForm("Index", "XMLSample", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div>
+        @Html.TextBox("filePath", "", new { type = "file" }) <br />
+        <input type="submit" value="Upload" />
+       
+    </div>
+
+}

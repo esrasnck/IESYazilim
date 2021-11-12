@@ -10,17 +10,21 @@
             @using (Html.BeginForm("Login", "Auth", FormMethod.Post))
             {
 
-        <div class="form-floating">
-            <label for="floatingInput">Email address</label>
-             @Html.TextBoxFor(x=> x.Email, new {@class="form-control",id="email",placeholder="email"})
-        </div>
+                <div class="form-floating">
+                    <label for="floatingInput">Email address</label>
+                    @Html.TextBoxFor(x => x.Email, new { @class = "form-control", id = "email", placeholder = "email" })
+                </div>
                 <div class="form-floating mt-2">
-                  
+
                     <label for="floatingPassword">Password</label>
-                    @Html.PasswordFor(x=>x.Password, new {@class="form-control",id="password",placeholder="Password"})
+                    @Html.PasswordFor(x => x.Password, new { @class = "form-control", id = "password", placeholder = "Password" })
                 </div>
                 <br />
-                <button class="w-100 btn btn-dark" type="submit" style="color: #007bff;" >Sign in</button>
+                <button class="w-100 btn btn-dark" type="submit" style="color: #007bff;">Sign in</button>
+                if (ViewBag.userToLogin != null)
+                {
+                    <p><h4 class="alert-danger" align="center"> @ViewBag.userToLogin  </h4></p>
+                }
             }
         </div>
     </main>

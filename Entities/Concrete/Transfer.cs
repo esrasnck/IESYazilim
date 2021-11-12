@@ -15,7 +15,7 @@ namespace Entities.Concrete
         public string actionType { get; set; }
         public string shipTo { get; set; }
         public string documentNumber { get; set; }
-        public DateTime documentDate { get; set; }
+        public DateTime? documentDate { get; set; }
         public string note { get; set; }
         public string version { get; set; }
     }

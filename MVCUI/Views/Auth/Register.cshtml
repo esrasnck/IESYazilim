@@ -3,51 +3,51 @@
     ViewData["Title"] = "Register";
 }
 
-
 <body class="text-center">
     <main class="form-signin">
         <div class="col-md-12">
             <h1 class="h3 mb-3 fw-normal"> Sign Up </h1>
-            @using (Html.BeginForm("Register","Auth",FormMethod.Post))
+
+            @using (Html.BeginForm("Register", "Auth", FormMethod.Post))
             {
 
 
+                <div class="form-floating mb-2">
+                    <label for="firstName">First Name</label>
+                    @Html.TextBoxFor(x => x.FirstName, new { @class = "form-control", id = "firstName", placeholder = "First Name" })
+                </div>
 
-        <div class="form-floating mb-2">
-            <label for="firstName">First Name</label>
-            @Html.TextBoxFor(x => x.FirstName, new { @class = "form-control", id = "firstName", placeholder = "First Name" })
-        </div>
+                <div class="form-floating mb-2">
+                    <label for="lastName">Last Name</label>
+                    @Html.TextBoxFor(x => x.LastName, new { @class = "form-control", id = "lastName", placeholder = "Last Name" })
 
-        <div class="form-floating mb-2">
-            <label for="lastName">Last Name</label>
-            @Html.TextBoxFor(x => x.LastName, new { @class = "form-control", id = "lastName", placeholder = "Last Name" })
+                </div>
 
-        </div>
+                <div class="form-floating mb-2">
+                    <label for="email">Email address</label>
+                    @Html.TextBoxFor(x => x.Email, new { @class = "form-control", id = "email", placeholder = "name@example.com" })
+                </div>
 
-        <div class="form-floating mb-2">
-            <label for="email">Email address</label>
-            @Html.TextBoxFor(x => x.Email, new { @class = "form-control", id = "email", placeholder = "name@example.com" })
-        </div>
+                <div class="form-floating mb-2">
+                    <label for="password">Password</label>
+                    @Html.PasswordFor(x => x.Password, new { @class = "form-control", id = "password", placeholder = "Password" })
 
-        <div class="form-floating mb-2">
-            <label for="password">Password</label>
-            @Html.PasswordFor(x => x.Password, new { @class = "form-control", id = "password", placeholder = "Password" })
-          
-        </div>
+                </div>
 
                 <button class="w-100 btn btn-md btn btn-dark" style="color: #007bff;" type="submit">Sign Up</button>
+
+                if (ViewBag.userExist != null)
+                {
+                    <p><h4 class="alert-danger" align="center"> @ViewBag.userExist @Html.ActionLink(" => Login Sayfası İçin Tıklayın", "Login", "Auth")</h4></p>
+                }
+                else if (ViewBag.registerResult != null)
+                {
+                    <p><h4 class="alert-success" align="center"> @ViewBag.registerResult @Html.ActionLink("", "Register", "Auth")</h4></p>
+                }
                 <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
-               }
-            </div>
+            }
+        </div>
     </main>
-   
+
+ 
 </body>
-
-@*<form method="post" asp-action="Register" enctype="application/x-www-form-urlencoded">
-
-    <input type="text" name="firstname" />
-    <input type="text" name="lastname" />
-    <input type="email" name="email" />
-    <input type="password" name="password" />
-    <button type="submit"> Üye Ol </button>
-</form>*@

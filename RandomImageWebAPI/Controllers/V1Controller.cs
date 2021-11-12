@@ -13,9 +13,9 @@ namespace RandomImageWebAPI.Controllers
     [ApiController]
     public class V1Controller : ControllerBase
     {
+        private static Random rnd = new Random();
         public IActionResult GetRandomImage()
         {
-            Random rnd = new Random();
             int number = rnd.Next(0, 10);
             string bs = "";
 
@@ -29,7 +29,7 @@ namespace RandomImageWebAPI.Controllers
                 break;
 
             }
-             return Ok(bs);
+            return Ok(bs);
         }
     }
 }
