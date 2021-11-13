@@ -23,20 +23,19 @@ namespace MVCUI.Controllers
             return View();
         }
 
-
-        // refacktor edilecek
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Register(UserForRegisterDto userForRegister)
         {
-            //if (!ModelState.IsValid)
-            //{
-            //    return View();
-            //}
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
             var userExist = _authService.UserExists(userForRegister.Email);
             if (!userExist.Success)
             {
                 ViewBag.userExist = userExist.Message;
-            
+                
                 return View();
             }
             var registerResult = _authService.Register(userForRegister);
@@ -55,11 +54,14 @@ namespace MVCUI.Controllers
             return View();
         }
 
-
-        // refaktör edilecek
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Login(UserForLoginDto userForLogin)
         {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
             var userToLogin = _authService.Login(userForLogin);
             if (!userToLogin.Success)
             {

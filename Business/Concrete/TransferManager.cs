@@ -30,7 +30,7 @@ namespace Business.Concrete
             var xmlToCsharp = readFile.FromXml<Entities.Concrete.Xmls.Transfer>();
             Transfer transfer = new Transfer()
             {
-                // maplemece
+               
                 sourceGLN = xmlToCsharp.SourceGLN,
                 destinationGLN = xmlToCsharp.DestinationGLN,
                 actionType = xmlToCsharp.ActionType,

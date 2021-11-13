@@ -3,18 +3,30 @@
     ViewData["Title"] = "Index2";
 }
 
-<h1>Index</h1>
-
 @using (Html.BeginForm("Index2", "XMLSample", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-    <div>
-        @Html.TextBox("filePath","", "")<br />
-
-        <button type="submit"> ekle  </button>
+    <div class="row">
+        <div class="col-md-8">
+          
+            @Html.TextArea("filePath", "",10,30, new { @class = "form-control"})
+        </div>
+        <div class="col-md-4" style="float:right">
+            <button class="w-100 btn btn-dark" type="submit" style="color:#77d0d9"> XML Formatına çevir  </button>
+            
+        </div>
     </div>
 
-}
-<div>
-    <p>@ViewBag.xmlview </p>
-
+    }
+<br />
+<div class="col-md-12">
+    @if (ViewBag.xmlview != null)
+    {
+        <h1> Xml versiyonu </h1>
+        <span class="card-text">
+            @ViewBag.xmlview
+        </span>
+        <br />
+        <br />
+        <a class="w-100 btn btn-dark" type="button" style="color:#77d0d9" asp-controller="xmlsample" asp-action="index"> Xml dosyasını Veritabanına kaydetmek için tıklayın </a>
+    }
 </div>

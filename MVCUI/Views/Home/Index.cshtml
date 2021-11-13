@@ -2,13 +2,17 @@
     ViewData["Title"] = "Home Page";
 }
 
-<!--Daha sonra burayı düzenle. aşağıdaki kodun konumunu sevmedim.-->
-
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
+
+    <div class="col-md-4" style="float:right">
+        <a class="w-100 btn btn-dark" type="button" style="color:#77d0d9" asp-controller="auth" asp-action="Register">
+        Kullanıcı Kayıt sayfasına git </a>
+    </div>
+    <br />
     <br />
     <h1 class="alert-success">JSON Veriyi tabloda gösterme işlemi</h1>
+
 </div>
 
 <div class="col-md-12">
@@ -23,32 +27,26 @@
             </tr>
         </thead>
         <tbody id="tab1">
-         
         </tbody>
     </table>
     <br />
     <br />
-    <div class="col-md-12">
-        <button class="w-100 btn btn-md btn btn-dark"> @Html.ActionLink("Kullanıcı girişine git", "Register", "Auth") </button>
-    </div>
+
 </div>
 
 <script>
 
     $(document).ready(function () {
-        console.log("esra")
         $.ajax({
             url: "https://reqres.in/api/users?page=2",
             type: "Get",
             success: function (response) {
                 console.log(response.data)
                 var trHtml = ''
-                $.each(response.data, function (i, item)
-                {
+                $.each(response.data, function (i, item) {
                     trHtml += '<tr><td>' + item.id + '</th><td>' + item.email + '</td><td>' + item.first_name + '</td ><td>' + item.last_name + '</td><td> <img src="' + item.avatar + '"></td></tr>';
-
                 });
-        $('#tab1').append(trHtml);
+                $('#tab1').append(trHtml);
             }
 
         });

@@ -5,28 +5,41 @@
 
 <body class="text-center">
     <main class="form-signin">
-        <div class="col-md-12">
-            <h1 class="h4 mb-3 fw-normal">Please sign in</h1>
-            @using (Html.BeginForm("Login", "Auth", FormMethod.Post))
-            {
+        <div class="row">
+            <div class="col-md-4">
 
-                <div class="form-floating">
-                    <label for="floatingInput">Email address</label>
-                    @Html.TextBoxFor(x => x.Email, new { @class = "form-control", id = "email", placeholder = "email" })
-                </div>
-                <div class="form-floating mt-2">
+            </div>
+            <div class="col-md-4">
+                <h1 class="h4 mb-3 fw-normal">Please sign in</h1>
+                <form asp-action="login">
 
-                    <label for="floatingPassword">Password</label>
-                    @Html.PasswordFor(x => x.Password, new { @class = "form-control", id = "password", placeholder = "Password" })
-                </div>
-                <br />
-                <button class="w-100 btn btn-dark" type="submit" style="color: #007bff;">Sign in</button>
-                if (ViewBag.userToLogin != null)
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Email" class="control-label">Email</label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                        <br />
+                        <label asp-for="Password" class="control-label">Password</label>
+                        <input asp-for="Password" type="password" class="form-control" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
+
+                    </div>
+                    <button class="w-100 btn btn-dark" type="submit" style="color:#77d0d9"> Giriş </button>
+
+                </form>
+                @if (ViewBag.userToLogin != null)
                 {
                     <p><h4 class="alert-danger" align="center"> @ViewBag.userToLogin  </h4></p>
+                    <br />
+                    <a class="w-100 btn btn-dark" type="button" style="color:#77d0d9" asp-controller="XMLSample" asp-action="Index2"> Xml </a>
+
                 }
-            }
-        </div>
+
+                <div class="col-md-4">
+
+                </div>
+            </div>
+            </div>
     </main>
 
 </body>

@@ -5,49 +5,73 @@
 
 <body class="text-center">
     <main class="form-signin">
-        <div class="col-md-12">
-            <h1 class="h3 mb-3 fw-normal"> Sign Up </h1>
 
-            @using (Html.BeginForm("Register", "Auth", FormMethod.Post))
-            {
+        <div class="row">
+            <div class="col-md-4">
+
+            </div>
 
 
-                <div class="form-floating mb-2">
-                    <label for="firstName">First Name</label>
-                    @Html.TextBoxFor(x => x.FirstName, new { @class = "form-control", id = "firstName", placeholder = "First Name" })
-                </div>
+            <div class="col-md-4">
+                <h1 class="h4 mb-3 fw-normal">Please sign in</h1>
+                <form asp-action="register">
 
-                <div class="form-floating mb-2">
-                    <label for="lastName">Last Name</label>
-                    @Html.TextBoxFor(x => x.LastName, new { @class = "form-control", id = "lastName", placeholder = "Last Name" })
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="FirstName" class="control-label">İsim</label>
+                        <input asp-for="FirstName" class="form-control" />
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                        <br />
+                        <label asp-for="LastName" class="control-label">Soyisim</label>
+                        <input asp-for="LastName" class="form-control" />
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                        <br />
+                        <label asp-for="Email" class="control-label">Email</label>
+                        <input asp-for="Email" class="form-control" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                        <br />
+                        <label asp-for="Password" class="control-label">Password</label>
+                        <input asp-for="Password" type="password" class="form-control" />
+                        <span asp-validation-for="Password" class="text-danger"></span>
 
-                </div>
+                    </div>
+                    <button id="register" class="w-100 btn btn-dark" type="submit" style="color:#77d0d9" onClick="buttonHidden()"> Kayıt ol </button>
 
-                <div class="form-floating mb-2">
-                    <label for="email">Email address</label>
-                    @Html.TextBoxFor(x => x.Email, new { @class = "form-control", id = "email", placeholder = "name@example.com" })
-                </div>
-
-                <div class="form-floating mb-2">
-                    <label for="password">Password</label>
-                    @Html.PasswordFor(x => x.Password, new { @class = "form-control", id = "password", placeholder = "Password" })
-
-                </div>
-
-                <button class="w-100 btn btn-md btn btn-dark" style="color: #007bff;" type="submit">Sign Up</button>
-
-                if (ViewBag.userExist != null)
+                </form>
+                @if (ViewBag.userExist != null)
                 {
-                    <p><h4 class="alert-danger" align="center"> @ViewBag.userExist @Html.ActionLink(" => Login Sayfası İçin Tıklayın", "Login", "Auth")</h4></p>
+
+
+                <p><h4 class="alert-danger" align="center"> @ViewBag.userExist</h4></p>
+                <p> Giriş sayfası için tıklayınız </p>
+                <a class="w-100 btn btn-dark" type="button" style="color:#77d0d9" asp-controller="auth" asp-action="login"> Giriş </a>
                 }
                 else if (ViewBag.registerResult != null)
                 {
-                    <p><h4 class="alert-success" align="center"> @ViewBag.registerResult @Html.ActionLink("", "Register", "Auth")</h4></p>
+                <p><h4 class="alert-success" align="center"> @ViewBag.registerResult </h4></p>
                 }
-                <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
-            }
+
+                <div class="col-md-4">
+
+                </div>
+            </div>
         </div>
     </main>
+    <script>
 
+
+        // şurayı nasıl yapıyorduk bir bak
+         
+        @*function buttonHidden() {
+            alert("esra")
+            if (@ViewBag.userExist != null) {
+                alert("esra")
+                document.getElementById('register').style.visibility = "hidden";
+            }
+
+        }*@
+
+
+    </script>
  
 </body>

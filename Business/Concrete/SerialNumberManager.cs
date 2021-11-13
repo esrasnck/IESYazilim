@@ -17,7 +17,7 @@ namespace Business.Concrete
         }
         public IResult Add(SerialNumber serialNumber)
         {
-            // hata kontrolünü yap. refactör et
+           
             _serialNumberDal.Add(serialNumber);
 
             return new SuccessResult();
