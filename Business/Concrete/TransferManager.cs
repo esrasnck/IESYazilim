@@ -15,7 +15,7 @@ namespace Business.Concrete
         ICarrierService _carrierService;
         IProductListService _productListService;
         ISerialNumberService _serialNumberService;
-        public TransferManager(ITransferDal transferDal,ICarrierService carrierService, IProductListService productListService, ISerialNumberService serialNumberService)
+        public TransferManager(ITransferDal transferDal, ICarrierService carrierService, IProductListService productListService, ISerialNumberService serialNumberService)
         {
             _transferDal = transferDal;
             _carrierService = carrierService;
@@ -31,33 +31,51 @@ namespace Business.Concrete
             Transfer transfer = new Transfer()
             {
                 // maplemece
+                sourceGLN = xmlToCsharp.SourceGLN,
+                destinationGLN = xmlToCsharp.DestinationGLN,
+                actionType = xmlToCsharp.ActionType,
+                shipTo = xmlToCsharp.ShipTo,
+                documentDate = xmlToCsharp.DocumentDate,  // hata çıkabilir
+                note = xmlToCsharp.Note,
+                version = xmlToCsharp.Vesion
 
-                note = xmlToCsharp.Note
             };
+            _transferDal.Add(transfer);
             foreach (var item in xmlToCsharp.Carrier)
             {
                 Carrier carrier = new Carrier()
                 {
-                    carrierLabel = item.CarrierLabel
+                    transferid = transfer.id,
+                    carrierLabel = item.CarrierLabel,
+                    containerType = item.ContainerType
+
                 };
+                _carrierService.Add(carrier);
 
                 ProductList productList = new ProductList()
                 {
-                    productionDate = item.ProductList.ProductionDate
+                    carrierid = carrier.carrierid,
+                    GTIN = item.ProductList.GTIN,
+                    lotNumber = item.ProductList.LotNumber,
+                    productionDate = item.ProductList.ProductionDate,
+                    expirationDate = item.ProductList.ExpirationDate,
+
                 };
+                _productListService.Add(productList);
 
                 if (item.ProductList != null && item.ProductList.SerialNumber != null)
                     foreach (var seriNumberXml in item.ProductList.SerialNumber)
                     {
+                        
                         SerialNumber serial = new SerialNumber()
                         {
-                            serialNumber = seriNumberXml
+                           productListid = productList.productListid,
+                            serialNumber = seriNumberXml,
                         };
+                        _serialNumberService.Add(serial);
+
                     }
             }
-
-            _transferDal.Add(transfer);
-
             return new SuccessResult("eklendi");
         }
     }
