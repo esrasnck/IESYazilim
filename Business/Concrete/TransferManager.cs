@@ -35,7 +35,7 @@ namespace Business.Concrete
                 destinationGLN = xmlToCsharp.DestinationGLN,
                 actionType = xmlToCsharp.ActionType,
                 shipTo = xmlToCsharp.ShipTo,
-                documentDate = xmlToCsharp.DocumentDate,  // hata çıkabilir
+                documentDate = xmlToCsharp.DocumentDate,  
                 note = xmlToCsharp.Note,
                 version = xmlToCsharp.Vesion
 

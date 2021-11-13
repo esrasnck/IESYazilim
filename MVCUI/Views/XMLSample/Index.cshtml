@@ -9,8 +9,10 @@
 {
     <div>
         @Html.TextBox("filePath", "", new { type = "file" }) <br />
-        <input type="submit" value="Upload" />
-       
+
+        <button type="submit"> @Html.ActionLink("Kullanıcı girişine git", "Index2", "XMLSample")</button>
+
+
     </div>
 
 }

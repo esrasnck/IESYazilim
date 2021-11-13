@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewData["Title"] = "Index2";
+}
+
+<h1>Index</h1>
+
+@using (Html.BeginForm("Index2", "XMLSample", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div>
+        @Html.TextBox("filePath","", "")<br />
+
+        <button type="submit"> ekle  </button>
+    </div>
+
+}
+<div>
+    <p>@ViewBag.xmlview </p>
+
+</div>
