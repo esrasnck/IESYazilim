@@ -5,6 +5,7 @@ using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
 
+
 namespace Core.Extensions
 {
     public static class XmlExtensions
@@ -46,5 +47,7 @@ namespace Core.Extensions
                 return default;
             }
         }
+        
+
     }
 }

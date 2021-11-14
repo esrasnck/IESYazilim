@@ -24,12 +24,12 @@
                         <span asp-validation-for="Password" class="text-danger"></span>
 
                     </div>
-                    <button class="w-100 btn btn-dark" type="submit" style="color:#77d0d9"> Giriş </button>
+                    <button id="login" class="w-100 btn btn-dark" type="submit" style="color:#77d0d9"> Giriş </button>
 
                 </form>
                 @if (ViewBag.userToLogin != null)
                 {
-                    <p><h4 class="alert-danger" align="center"> @ViewBag.userToLogin  </h4></p>
+                    <p><h4 id="userToLogin" class="alert-danger" align="center"> @ViewBag.userToLogin  </h4></p>
                     <br />
                     <a class="w-100 btn btn-dark" type="button" style="color:#77d0d9" asp-controller="XMLSample" asp-action="Index2"> Xml </a>
 
@@ -39,8 +39,24 @@
 
                 </div>
             </div>
-            </div>
+        </div>
     </main>
+    <script>
 
+        buttonHidden();
+
+
+        function buttonHidden() {
+            var userToLogin = document.getElementById("userToLogin")
+        
+            if (userToLogin != null) {
+
+                document.getElementById("login").hidden = true;
+            }
+
+        }
+
+
+    </script>
 </body>
 

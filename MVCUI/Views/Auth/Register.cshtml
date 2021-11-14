@@ -35,22 +35,22 @@
                         <span asp-validation-for="Password" class="text-danger"></span>
 
                     </div>
-                    <button id="register" class="w-100 btn btn-dark" type="submit" style="color:#77d0d9" onClick="buttonHidden()"> Kayıt ol </button>
+                    <button id="register" class="w-100 btn btn-dark" type="submit" style="color:#77d0d9"> Kayıt ol </button>
 
                 </form>
+           
                 @if (ViewBag.userExist != null)
                 {
-
-
-                <p><h4 class="alert-danger" align="center"> @ViewBag.userExist</h4></p>
-                <p> Giriş sayfası için tıklayınız </p>
-                <a class="w-100 btn btn-dark" type="button" style="color:#77d0d9" asp-controller="auth" asp-action="login"> Giriş </a>
+                    <p><h4 id="userExist" class="alert-danger" align="center"> @ViewBag.userExist</h4></p>
+                 
                 }
                 else if (ViewBag.registerResult != null)
                 {
-                <p><h4 class="alert-success" align="center"> @ViewBag.registerResult </h4></p>
-                }
+                    <p><h4 id="registerResult" class="alert-success" align="center"> @ViewBag.registerResult </h4></p>
 
+                }
+                <p hidden id="paragraf"> Giriş sayfası için tıklayınız </p>
+                <a hidden id="login" class="w-100 btn btn-dark" type="button" style="color:#77d0d9" asp-controller="auth" asp-action="login"> Giriş </a>
                 <div class="col-md-4">
 
                 </div>
@@ -59,18 +59,18 @@
     </main>
     <script>
 
+        buttonHidden();
 
-        // şurayı nasıl yapıyorduk bir bak
-         
-        @*function buttonHidden() {
-            alert("esra")
-            if (@ViewBag.userExist != null) {
-                alert("esra")
-                document.getElementById('register').style.visibility = "hidden";
+        function buttonHidden() {
+            var userExist = document.getElementById("userExist")
+            var registerResult = document.getElementById("registerResult")
+            if (userExist != null || registerResult !=null) {
+                document.getElementById("register").hidden = true;
+                document.getElementById("paragraf").hidden = false;
+                document.getElementById("login").hidden = false;
             }
 
-        }*@
-
+        }
 
     </script>
  

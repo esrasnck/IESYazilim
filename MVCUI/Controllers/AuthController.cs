@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Core.Extensions;
 using Entities.Dtos;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -38,6 +39,7 @@ namespace MVCUI.Controllers
                 
                 return View();
             }
+            
             var registerResult = _authService.Register(userForRegister);
             if (registerResult.Success)
             {
