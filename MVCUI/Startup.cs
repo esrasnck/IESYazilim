@@ -28,21 +28,6 @@ namespace MVCUI
         public void ConfigureServices(IServiceCollection services)
         {
       
-            services.AddSingleton<IUserDal, EfUserDal>();
-            services.AddSingleton<ITransferDal, EfTransferDal>();
-            services.AddSingleton<IProductListDal, EfProductListDal>();
-            services.AddSingleton<ICarrierDal, EfCarrierDal>();
-            services.AddSingleton<ISerialNumberDal, EfSerialNumberDal>();
-
-
-            services.AddSingleton<ICarrierService, CarrierManager>();
-            services.AddSingleton<IProductListService, ProductListManager>();
-            services.AddSingleton<ISerialNumberService, SerialNumberManager>();
-            services.AddSingleton<ITransferService, TransferManager>();
-            services.AddSingleton<IAuthService, AuthManager>();
-            services.AddSingleton<IUserService, UserManager>();
-
-
             services.AddControllersWithViews();
 
         }
