@@ -1,5 +1,22 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
+@{
+    string ad;
+    string soyad;
+    if (Core.Extensions.SessionExtensions.Get<Core.Entities.Concrete.User>(Context.Session, "userName")!=null)
+    {
+        ad = Core.Extensions.SessionExtensions.Get<Core.Entities.Concrete.User>(Context.Session, "userName").FirstName;
+
+        soyad = Core.Extensions.SessionExtensions.Get<Core.Entities.Concrete.User>(Context.Session, "userName").LastName;
+
+    }
+    else
+    {
+        ad = " ";
+        soyad = " ";
+    }
+
+}
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -25,7 +42,10 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+
                         </li>
+                        <li>@ad </li>
+                        <li>@soyad </li>
                     </ul>
                 </div>
             </div>
@@ -42,9 +62,9 @@
             &copy; 2021 - MVCUI - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
-   
+
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-   
+
     <script src="~/js/site.js" asp-append-version="true"></script>
     @RenderSection("Scripts", required: false)
 </body>

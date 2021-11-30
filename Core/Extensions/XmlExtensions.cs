@@ -17,6 +17,7 @@ namespace Core.Extensions
             if (encoding == null)
                 encoding = new UTF8Encoding(false);
             using (StringWriter stringWriter = new StringWriterWithEncoding(encoding, new StringBuilder()))
+            // StringBuilder, System.Text isim uzayı altında yer alan ve temel olarak metinsel ifadeleri birleştirmek için kullanılan bir sınıftır
             using (XmlTextWriter xmlWriter = new XmlTextWriter(stringWriter)
             {
                 Formatting = Formatting.Indented

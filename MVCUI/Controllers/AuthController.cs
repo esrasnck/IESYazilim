@@ -1,12 +1,14 @@
 ﻿using Business.Abstract;
 using Core.Extensions;
 using Entities.Dtos;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using User = Core.Entities.Concrete.User;
 
 namespace MVCUI.Controllers
 {
@@ -14,9 +16,11 @@ namespace MVCUI.Controllers
     {
 
         private IAuthService _authService;
+     
         public AuthController(IAuthService authService)
         {
             _authService = authService;
+            
         }
 
         public IActionResult Register()
@@ -36,14 +40,19 @@ namespace MVCUI.Controllers
             if (!userExist.Success)
             {
                 ViewBag.userExist = userExist.Message;
-                
+             
                 return View();
             }
+
             
             var registerResult = _authService.Register(userForRegister);
             if (registerResult.Success)
             {
                 ViewBag.registerResult = registerResult.Message;
+
+                HttpContext.Session.Set<User>("userName", registerResult.Data);
+                
+              
                 return View();
             }
 
